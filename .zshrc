@@ -1,13 +1,17 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 #
+
+# Homebrew env (for ARM)
 eval "$(/opt/homebrew/bin/brew shellenv)"
-# Path to your Oh My Zsh installation.
-#
+
+# Path to your Oh My Zsh installation
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$HOME/.local/bin:$PATH"
+alias python="python3"
+alias pip="pip3"
 
-
+# ARM config (Apple Silicon)
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -108,3 +112,12 @@ plugins=(git)
 
 
 source $ZSH/oh-my-zsh.sh
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/Users/dillonseward/.juliaup/bin' $path)
+export PATH
+
+# <<< juliaup initialize <<<
