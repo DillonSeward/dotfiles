@@ -1,17 +1,48 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-#
-
-# Homebrew env (for ARM)
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # Path to your Oh My Zsh installation
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$HOME/.local/bin:$PATH"
+
+# aliases 
 alias python="python3"
 alias pip="pip3"
+alias x86shell="arch -x86_64 /bin/zsh --login"
+alias m1shell="arch -arm64 /bin/zsh --login"
 
-# ARM config (Apple Silicon)
+# SUMO SUFF
+export PATH="$HOME/sumo-1.8.0-install/bin:$PATH"
+export SUMO_HOME="$HOME/sumo-1.8.0-install/share/sumo"
+
+# arm arch and x86 arch sperated shells  
+arch_name="$(uname -m)"
+if [[ "$arch_name" == "arm64" ]]; then
+  echo "🍏 ARM64 (native M1) shell loaded"
+
+  # Load ARM Homebrew
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  # Optional: Python from ARM brew
+  export PATH="/opt/homebrew/opt/python@3.13/bin:$PATH"
+
+elif [[ "$arch_name" == "x86_64" ]]; then
+  echo "🧠 x86 (Rosetta) shell loaded"
+
+  # Load Intel Homebrew
+  eval "$(/usr/local/bin/brew shellenv)"
+
+  # Optional: Python from Intel brew
+  export PATH="/usr/local/opt/python@3.11/bin:$PATH"
+fi
+
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/Users/dillonseward/.juliaup/bin' $path)
+export PATH
+
+# <<< juliaup initialize <<<
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -113,11 +144,3 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# >>> juliaup initialize >>>
-
-# !! Contents within this block are managed by juliaup !!
-
-path=('/Users/dillonseward/.juliaup/bin' $path)
-export PATH
-
-# <<< juliaup initialize <<<
