@@ -9,9 +9,8 @@ alias x86shell="arch -x86_64 /bin/zsh --login"
 alias m1shell="arch -arm64 /bin/zsh --login"
 
 # SUMO SUFF
-export PATH="$HOME/sumo-1.8.0-install/bin:$PATH"
-export SUMO_HOME="$HOME/sumo-1.8.0-install/share/sumo"
-
+export SUMO_HOME="$HOME/Desktop/Projects/SUMO-Platoon/sumo-1.8.0/"
+export PATH="$SUMO_HOME/bin:$PATH"
 # arm arch and x86 arch sperated shells  
 arch_name="$(uname -m)"
 if [[ "$arch_name" == "arm64" ]]; then
@@ -143,4 +142,3 @@ plugins=(git)
 
 
 source $ZSH/oh-my-zsh.sh
-
